@@ -14,8 +14,12 @@ import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.ssl.SslHandler;
 
+/**
+ * @author Rocker Hu
+ */
 public class WebSocketServerInitializer extends ChannelInitializer<Channel> {
 
+  @Override
   protected void initChannel(Channel channel) throws Exception {
     channel.pipeline().addLast(new HttpServerCodec())
         .addLast(new HttpObjectAggregator(65536))
@@ -29,6 +33,8 @@ public class WebSocketServerInitializer extends ChannelInitializer<Channel> {
 
   public static class BinaryFrameHandler extends SimpleChannelInboundHandler<BinaryWebSocketFrame> {
 
+
+    @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, BinaryWebSocketFrame binaryWebSocketFrame) throws Exception {
 
     }
@@ -36,6 +42,7 @@ public class WebSocketServerInitializer extends ChannelInitializer<Channel> {
 
   public static class TextFrameHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
 
+    @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, TextWebSocketFrame textWebSocketFrame) throws Exception {
 
     }
@@ -43,6 +50,7 @@ public class WebSocketServerInitializer extends ChannelInitializer<Channel> {
 
   public static class ContinuationFrameHandler extends SimpleChannelInboundHandler<ContinuationWebSocketFrame> {
 
+    @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, ContinuationWebSocketFrame continuationWebSocketFrame) throws Exception {
 
     }
